@@ -1,7 +1,7 @@
 📌 README.md
 
 🎓 Karnavati University Virtual Assistant – UIT
-Welcome to the official AI-powered chatbot project of the School of United World Institute of Technology (UWIT), Karnavati University. This chatbot has been designed to streamline college-related queries by providing instant, natural-language responses to prospective students, parents, and visitors.
+Welcome to the official AI-powered chatbot project of the School of United World Institute of Technology (UIT), Karnavati University. This chatbot has been designed to streamline college-related queries by providing instant, natural-language responses to prospective students, parents, and visitors.
 
 ✨ Built with Natural Language Processing (NLP) and deployed via Gradio, this virtual assistant aims to offer seamless and intuitive access to university details like fee structure, admissions, events, placements, and much more.
 
