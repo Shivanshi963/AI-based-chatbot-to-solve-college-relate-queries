@@ -1,0 +1,104 @@
+# Install required libraries
+!pip install gradio spacy
+!python -m spacy download en_core_web_sm
+
+# Import libraries
+import gradio as gr
+import spacy
+
+# Load NLP model
+nlp = spacy.load("en_core_web_sm")
+
+# College Details
+college_name = "Karnavati University"
+school_name = "United World Institute of Technology"
+
+# College Info Database
+college_info = {
+    "fees structure": "Fee structure varies by course:\n- B.Tech: ₹80,000/year\n- M.Tech: ₹1,00,000/year\n- MBA: ₹1,20,000/year\n- Ph.D.: ₹60,000/year",
+    "previous year college status": "In 2024, the college saw 95% placements. Over 120 companies including Google, TCS, Infosys visited the campus.",
+    "number of students": "As of 2025, there are approximately 3,200 students enrolled across UG, PG, and Ph.D. programs.",
+    "current events": "Upcoming Events:\n- Tech Fest: InnovateX 2025\n- Cultural Fest: Rhythm Night\n- Guest Lecture Series: Industry 5.0 Trends",
+    "branches available": "Branches Offered:\n- Computer Science and Engineering\n- Electrical Engineering\n- Mechanical Engineering\n- Civil Engineering\n- Electronics and Communication Engineering",
+    "facilities": "Facilities include:\n- Hostels for boys and girls\n- Wi-Fi-enabled campus\n- Smart classrooms\n- Central Library\n- Research and Innovation Lab\n- Sports Complex and Gym",
+    "courses": "Academic Programs:\n- B.Tech in 5 branches\n- M.Tech in CSE, ECE, and Mechanical\n- MBA in HR, Finance, and Marketing\n- Ph.D. in Engineering, Sciences and Management",
+    "placement details": "Placement 2024:\n- Highest Package: ₹25 LPA (Google)\n- Average Package: ₹7.5 LPA\n- Top Recruiters: Google, Microsoft, TCS, Amazon, Wipro",
+    "admission process": "Admissions are based on national exams:\n- B.Tech: JEE Main\n- M.Tech: GATE\n- MBA: CAT/MAT\n- Ph.D.: College Entrance + Interview",
+    "scholarships": "Scholarships Available:\n- Merit-based (up to 100%)\n- Need-based\n- Special scholarships for girl students and reserved categories",
+    "hostel life": "Hostel Life:\n- Well-furnished rooms\n- 24x7 security\n- Mess with hygienic food\n- Recreational area and indoor games",
+    "library info": "Library Info:\n- 50,000+ books\n- Subscriptions to 120+ journals and magazines\n- Access to IEEE, Springer, and J-Gate digital libraries",
+    "faculty": "Faculty:\n- 200+ highly qualified faculty members\n- 80% hold PhDs\n- Active in research with 500+ publications in last 3 years"
+}
+
+# Welcome tracking
+first_time = True
+
+# Chatbot function
+def chatbot(query):
+    global first_time
+    query = query.strip().lower()
+
+    # Handle thank-you or exit message
+    if any(kw in query for kw in ["no", "nothing", "thank", "that's all", "exit", "bye"]):
+        return "Thank you for visiting Karnavati University's virtual assistant. Have a great day!"
+
+    # First-time greeting
+    if first_time:
+        first_time = False
+        return (
+            f"Welcome to the virtual assistant of {college_name}, {school_name}.\n"
+            "I'm here to help you with information about admissions, courses, fees, placements, facilities, and more.\n"
+            "How can I assist you today?"
+        )
+
+    # NLP keyword search
+    if "fee" in query or "fees" in query or "tuition" in query:
+        response = college_info["fees structure"]
+    elif "previous year" in query or "last year" in query or "past performance" in query:
+        response = college_info["previous year college status"]
+    elif "student" in query or "how many" in query or "number of students" in query:
+        response = college_info["number of students"]
+    elif "event" in query or "fest" in query or "happening" in query:
+        response = college_info["current events"]
+    elif "branch" in query or "department" in query:
+        response = college_info["branches available"]
+    elif "facility" in query or "facilities" in query or "infrastructure" in query:
+        response = college_info["facilities"]
+    elif "course" in query or "program" in query:
+        response = college_info["courses"]
+    elif "placement" in query or "job" in query or "company" in query:
+        response = college_info["placement details"]
+    elif "admission" in query or "how to apply" in query or "entrance" in query:
+        response = college_info["admission process"]
+    elif "scholarship" in query or "financial aid" in query:
+        response = college_info["scholarships"]
+    elif "hostel" in query or "living" in query:
+        response = college_info["hostel life"]
+    elif "library" in query or "books" in query:
+        response = college_info["library info"]
+    elif "faculty" in query or "professor" in query or "teachers" in query:
+        response = college_info["faculty"]
+    else:
+        response = (
+            "I'm sorry, I couldn't understand your query. "
+            "Please ask about topics like fees, placements, admissions, hostels, scholarships, or facilities."
+        )
+
+    # Add prompt to ask for more queries
+    return response + "\n\nWould you like to ask anything else?"
+
+# Gradio interface
+iface = gr.Interface(
+    fn=chatbot,
+    inputs="text",
+    outputs="text",
+    title=f"{school_name} - Virtual Assistant",
+    description=(
+        f"Welcome to {college_name}.\n"
+        f"This chatbot will assist you with queries related to "
+        f"{school_name}. You can ask about fees, courses, admission process, placements, facilities, and more."
+    )
+)
+
+# Launch the app
+iface.launch(share=True)
