@@ -1,19 +1,18 @@
-# Install required libraries
-!pip install gradio spacy
+# Install spaCy and download language model
+!pip install spacy
 !python -m spacy download en_core_web_sm
 
-# Import libraries
-import gradio as gr
+# Import spaCy
 import spacy
 
-# Load NLP model
+# Load English NLP model
 nlp = spacy.load("en_core_web_sm")
 
 # College Details
 college_name = "Karnavati University"
 school_name = "United World Institute of Technology"
 
-# College Info Database
+# College Info Dictionary
 college_info = {
     "fees structure": "Fee structure varies by course:\n- B.Tech: ₹80,000/year\n- M.Tech: ₹1,00,000/year\n- MBA: ₹1,20,000/year\n- Ph.D.: ₹60,000/year",
     "previous year college status": "In 2024, the college saw 95% placements. Over 120 companies including Google, TCS, Infosys visited the campus.",
@@ -30,75 +29,64 @@ college_info = {
     "faculty": "Faculty:\n- 200+ highly qualified faculty members\n- 80% hold PhDs\n- Active in research with 500+ publications in last 3 years"
 }
 
-# Welcome tracking
+# First-time flag
 first_time = True
 
 # Chatbot function
 def chatbot(query):
     global first_time
-    query = query.strip().lower()
+    query = query.lower().strip()
 
-    # Handle thank-you or exit message
-    if any(kw in query for kw in ["no", "nothing", "thank", "that's all", "exit", "bye"]):
+    if any(kw in query for kw in ["no", "thank", "nothing", "bye", "exit"]):
         return "Thank you for visiting Karnavati University's virtual assistant. Have a great day!"
 
-    # First-time greeting
     if first_time:
         first_time = False
         return (
-            f"Welcome to the virtual assistant of {college_name}, {school_name}.\n"
-            "I'm here to help you with information about admissions, courses, fees, placements, facilities, and more.\n"
-            "How can I assist you today?"
+            f"👋 Welcome to the virtual assistant of {college_name}, {school_name}.\n"
+            "I can help with details about courses, fees, placements, events, and more.\n"
+            "What would you like to know?"
         )
 
-    # NLP keyword search
-    if "fee" in query or "fees" in query or "tuition" in query:
-        response = college_info["fees structure"]
-    elif "previous year" in query or "last year" in query or "past performance" in query:
-        response = college_info["previous year college status"]
-    elif "student" in query or "how many" in query or "number of students" in query:
-        response = college_info["number of students"]
+    if "fee" in query or "tuition" in query:
+        return college_info["fees structure"]
+    elif "previous year" in query or "last year" in query or "past" in query:
+        return college_info["previous year college status"]
+    elif "student" in query or "how many" in query:
+        return college_info["number of students"]
     elif "event" in query or "fest" in query or "happening" in query:
-        response = college_info["current events"]
+        return college_info["current events"]
     elif "branch" in query or "department" in query:
-        response = college_info["branches available"]
-    elif "facility" in query or "facilities" in query or "infrastructure" in query:
-        response = college_info["facilities"]
+        return college_info["branches available"]
+    elif "facility" in query or "infrastructure" in query:
+        return college_info["facilities"]
     elif "course" in query or "program" in query:
-        response = college_info["courses"]
-    elif "placement" in query or "job" in query or "company" in query:
-        response = college_info["placement details"]
-    elif "admission" in query or "how to apply" in query or "entrance" in query:
-        response = college_info["admission process"]
-    elif "scholarship" in query or "financial aid" in query:
-        response = college_info["scholarships"]
+        return college_info["courses"]
+    elif "placement" in query or "job" in query:
+        return college_info["placement details"]
+    elif "admission" in query or "apply" in query:
+        return college_info["admission process"]
+    elif "scholarship" in query or "aid" in query:
+        return college_info["scholarships"]
     elif "hostel" in query or "living" in query:
-        response = college_info["hostel life"]
+        return college_info["hostel life"]
     elif "library" in query or "books" in query:
-        response = college_info["library info"]
-    elif "faculty" in query or "professor" in query or "teachers" in query:
-        response = college_info["faculty"]
+        return college_info["library info"]
+    elif "faculty" in query or "professor" in query:
+        return college_info["faculty"]
     else:
-        response = (
-            "I'm sorry, I couldn't understand your query. "
-            "Please ask about topics like fees, placements, admissions, hostels, scholarships, or facilities."
+        return (
+            "I'm sorry, I couldn't understand your question. Try asking about fees, courses, admissions, placements, or hostel."
         )
 
-    # Add prompt to ask for more queries
-    return response + "\n\nWould you like to ask anything else?"
+# Chat loop for Colab
+print(f"📚 Welcome to {school_name} Virtual Assistant!")
+print("💬 Type your question below (e.g., 'What is the fees for B.Tech?')\n🔚 Type 'exit' or 'bye' to quit.")
 
-# Gradio interface
-iface = gr.Interface(
-    fn=chatbot,
-    inputs="text",
-    outputs="text",
-    title=f"{school_name} - Virtual Assistant",
-    description=(
-        f"Welcome to {college_name}.\n"
-        f"This chatbot will assist you with queries related to "
-        f"{school_name}. You can ask about fees, courses, admission process, placements, facilities, and more."
-    )
-)
-
-# Launch the app
-iface.launch(share=True)
+while True:
+    user_input = input("\n👤 You: ")
+    if user_input.lower() in ["exit", "bye"]:
+        print("🤖 Assistant: Thank you! Have a great day!")
+        break
+    reply = chatbot(user_input)
+    print("🤖 Assistant:", reply)
