@@ -1,109 +1,112 @@
-📌 README.md
+# 🎓 Karnavati University Chatbot
 
-🎓 Karnavati University Virtual Assistant – UIT
-Welcome to the official AI-powered chatbot project of the School of United World Institute of Technology (UIT), Karnavati University. This chatbot has been designed to streamline college-related queries by providing instant, natural-language responses to prospective students, parents, and visitors.
+A smart and interactive chatbot built for Karnavati University using Python and IPyWidgets, designed to assist students and visitors by answering queries about courses, admissions, placements, facilities, and more – all in a user-friendly interface inside Google Colab.
 
-✨ Built with Natural Language Processing (NLP) and deployed via Gradio, this virtual assistant aims to offer seamless and intuitive access to university details like fee structure, admissions, events, placements, and much more.
+## 👨‍👩‍👧‍👦 Team Members
 
-🧠 Project Objective
-To develop an AI-based chatbot that simulates human-like conversation using Natural Language Processing to resolve frequently asked questions regarding Karnavati University’s School of UnitedWorld Institute of Technology (UIT).
+This project was proudly built by the following students of **Karnavati University**:
 
-👨‍💻 Meet the Team
-This project was ideated and developed by the following team members from United World Institute of Technology:
+- 👩‍💻 Shivanshi Singh  
+- 👩‍💻 Arpita Prajapati  
+- 👩‍💻 Vishwa Dhanal  
 
-👩‍💻 Shivanshi Singh
+## 📌 Project Overview
 
-👩‍💻 Arpita Prajapati
+The **Karnavati University Chatbot** provides quick, keyword-based responses for commonly asked questions such as:
 
-👩‍💻 Vishwa Dhanal
+- 💸 Fees Structure  
+- 🎓 Courses Offered  
+- 🏫 Facilities and Infrastructure  
+- 📝 Admission Process  
+- 📈 Placement Statistics  
+- 🏠 Hostel Life  
+- 📚 Library Access  
+- 👨‍🏫 Faculty Details  
+- 🎉 Upcoming Events  
+- 🎁 Scholarships  
 
-We believe in building smart and accessible solutions to empower education using AI.
+Built with simplicity in mind, it offers a clean and scrollable chat interface using basic HTML, CSS, and IPyWidgets — perfect for interactive exploration directly in Jupyter/Colab notebooks.
 
-This assistant provides real-time responses related to:
+---
 
-📚 Courses and Programs Offered
+## 🚀 How to Use
 
-💸 Fee Structure
+### 🧪 Run in Google Colab
 
-📝 Admission Process
+1. Open [Google Colab](https://colab.research.google.com)
+2. Create a new notebook.
+3. Copy and paste the code from `Karnavati_University_Chatbot.py` into a cell.
+4. Run the cell and begin chatting in the input box below the chatbot heading!
 
-🏢 Hostel and Campus Facilities
+> ✅ You don’t need to install anything — it uses only built-in Python and Colab-compatible tools.
 
-💼 Placements and Recruiters
+---
 
-🏫 Faculty and Research
+## 🖥️ Tech Stack
 
-🎉 Events & Fests
+| Tech          | Purpose                                |
+|---------------|----------------------------------------|
+| Python        | Core logic and keyword processing      |
+| IPyWidgets    | Input handling in Colab                |
+| HTML & CSS    | Styling the chat interface             |
+| Jupyter/Colab | Interactive execution and UI rendering |
 
-🎓 Scholarships
+---
 
-📈 Student Enrollment Data
+📚 Libraries & Technologies Used
 
-📖 Library Resources
+Technology / Library	Purpose / Role
+Python 3	Core programming language used for chatbot logic and data processing
+IPython.display	To render HTML/CSS content and display styled chatbot messages in Colab
+ipywidgets	To create interactive input fields (text box) in the notebook
+HTML + CSS (inline)	For styling the chatbot UI (chat bubbles, layout, colors, scrollable area)
+uuid	Used to generate a unique ID for the chat container to prevent HTML conflicts
+Google Colab	Platform to run the interactive chatbot interface in a web-based notebook
+💡 Additional Details:
+✅ No external installations required — everything runs natively in Google Colab.
 
-🚀 Features
-✅ Simple and clean Gradio-based web interface
+🎨 HTML and CSS are written directly in Python using IPython.display.HTML() to style the chat interface.
 
-✅ NLP-powered keyword detection using spaCy
+🧠 The college_info dictionary acts as a simple knowledge base or response engine using keyword detection.
 
-✅ Interactive Q&A with follow-up prompts
+🔄 Real-time input handling is done via the widgets.Text() with .on_submit() event.
 
-✅ Exit gracefully with a thank-you message
+## 💡 Features
 
-✅ Fully offline and portable – ready to run in Google Colab
+- ⚡ **Real-time keyword matching**
+- 🧠 **Built-in knowledge base** for student queries
+- 🎨 **Responsive chat UI** using HTML and CSS
+- 📦 **No external libraries** required
+- 🗂️ Easy to expand with more data or logic
 
-🛠️ Technologies Used
 
-Technology	Purpose
-Python	Core programming
-spaCy	Natural Language Processing
-Gradio	Web UI for interaction
-Google Colab	Deployment & demo platform
-💡 How It Works
-User opens the chatbot and is greeted with a welcome message.
+## 🛠️ Future Improvements
 
-The user types a query (e.g., “What is the fee for B.Tech?”).
+- Add dropdown menus or buttons for question categories
+- Enable voice interaction using SpeechRecognition
+- Allow multi-language support
+- Deploy as a simple web app using Streamlit or Flask
 
-The NLP engine identifies keywords and fetches preloaded data.
+---
 
-The bot responds with appropriate information.
+## 📝 License
 
-After each response, it politely asks if the user has more questions.
+This project is developed for academic purposes and is free to use, share, and build upon.
 
-If the user replies “No” or “Thank you”, the chatbot ends the conversation with a goodbye message.
+---
 
-🖼️ Sample Interaction
-User: Hello
-Bot: Welcome to the virtual assistant of Karnavati University, United World Institute of Technology.
-I’m here to help you with admissions, fees, placements, courses, and more. How can I assist you today?
+## 🌐 Links
 
-User: What are the available branches in B.Tech?
-Bot: Branches Offered:
+- 📁 [GitHub Repository](https://github.com/YourUsername/Karnavati-University-Chatbot)
+- 📘 [Karnavati University Official Website](https://karnavatiuniversity.edu.in/)
 
-Computer Science and Engineering
+---
 
-Electrical Engineering
+> Made with ❤️ by Shivanshi, Arpita, and Vishwa
 
-Mechanical Engineering
 
-Civil Engineering
 
-Electronics and Communication Engineering
-Would you like to ask anything else?
 
-User: No, that’s all.
-Bot: Thank you for visiting Karnavati University’s virtual assistant. Have a great day!
 
-📁 Installation & Usage
-To run the project in Google Colab:
 
-Open a new Google Colab notebook.
-
-Paste the full chatbot code provided in this repository.
-
-Run all cells to install dependencies and launch the chatbot.
-
-A Gradio link will appear—click to begin interaction.
-
-📬 Feedback
-Have suggestions or want to contribute? Feel free to fork this repository and raise a pull request or email us your feedback.
+ 
