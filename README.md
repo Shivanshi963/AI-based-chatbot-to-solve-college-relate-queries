@@ -28,6 +28,20 @@ The **Karnavati University Chatbot** provides quick, keyword-based responses for
 Built with simplicity in mind, it offers a clean and scrollable chat interface using basic HTML, CSS, and IPyWidgets — perfect for interactive exploration directly in Jupyter/Colab notebooks.
 
 ---
+🤖 What Type of AI Is Used?
+ Karnavati University Chatbot uses:
+
+🧠 Natural Language Processing (NLP)
+✅ Why NLP?
+Because your chatbot is:
+
+Taking user text input (questions),
+
+Analyzing it using basic keyword matching (if key in message.lower()),
+
+And giving back relevant text-based responses.
+
+Even though it’s a very basic form of NLP (no advanced models like BERT or GPT are used), it still falls under NLP because it processes and responds to natural language from users.
 
 ## 🚀 How to Use
 
